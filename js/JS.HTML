@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+</body>
+</html>
+
+<script>
+    // 封装  生成实例对象的三种模式
+
+    // 一、 生成实例对象的原始模式
+    var removeDuplicates = function(nums) {
+    var len = nums.length
+    for (var i = 0;i<len; i++) {
+      for (var j = 0;j<len; j++) {
+        if (nums[i] === nums[j]) {
+            nums.splice(j,1)
+            j--;
+          }
+      }    
+    }
+  return nums
+};
+
+console.log(removeDuplicates([1,2,3,4,5,1,2,3,4,3,2]))
+
+
+
+</script>

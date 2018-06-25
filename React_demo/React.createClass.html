@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script src ='./react.js'></script>
+<script src = './react-dom.js'></script>
+<body>
+    <did id="reactContainer">
+
+    </did>
+</body>
+</html>
+<script>
+
+    /*
+    React.createClass
+
+    它的作用是注册一个组件类HelloComponent,这个组件类只包含一个render函数，
+    该函数通过调用React.createElement实现了以下HTML内容：
+    */
+    var HelloComponent = React.createClass({
+        render:function(){
+            return React.createElement('h1',null,'Hello world')
+        }
+    })
+
+    /*
+        ReactDOM.render是React的最基本方法，用于将模板转为HTML语言，并插入指定的DOM节点。    
+    */
+    ReactDOM.render(
+        React.createElement(HelloComponent,null),
+        document.getElementById('reactContainer')
+    )
+</script>

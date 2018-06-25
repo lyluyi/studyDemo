@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./dist/index.js"></script>
+    </head>
+    <body>
+    </body>
+</html>
+<script>
+
+//   // var let的区别
+//   for(var i=0;i<5;i++){
+//         setTimeout(()=> {console.log("var：" + i)},100)
+//     }
+
+//     console.log('i:' + i)
+//        // let
+//     for(let j=0;j<5;j++){
+//         setTimeout(function(){
+//             console.log("let" + j);
+//         },100)
+//     }
+
+//     console.log('j:' + j)
+
+//     // 先输入  console.log('i:' + i)  console.log('j:' + j) 再  5var：5  let0 let1 let2 let3 let4 let5
+
+
+//  let 块级作用域
+// function fn () {
+//     let n = 5
+//     if (true) {
+//       let n = 10 
+//     }
+//     console.log('n:' + n)
+// }
+// fn ()  // 块级概念的体现
+
+
+//  数组的解构赋值
+//  let [a,b,c]=[1,2,3];
+//  let [a,[b,c],d]=[1,[2,3],4];
+// let [a,b="JSPang"]=['技术胖'] // 解构赋值是允许你使用默认值的，先看一个最简单的默认是的例子。
+// console.log(a+b); //控制台显示“技术胖JSPang”
+
+// 解构不仅可以用于数组，还可以用于对象。
+/*
+注意：对象的解构与数组有一个重要的不同。数组的元素是按次序排列的，变量的取值由它的位置决定；
+而对象的属性没有次序，变量必须与属性同名，才能取到正确的值。
+*/
+
+// let {foo,bar} = {foo:'aaa',bar:'bbb'}
+// console.log(foo + bar)  // aaabbb
+
+// 字符串解构 字符串也可以解构，这是因为，此时字符串被转换成了一个类似数组的对象。
+// const [b,c,d,e] = 'qwert';
+// console.log(b);
+// console.log(c);
+// console.log(d);
+// console.log(e);
+// 输出 qwer
+
+
+// 对象扩展运算符（…）
+/*
+当编写一个方法时，我们允许它传入的参数是不确定的。这时候可以使用对象扩展运算符来作参数。
+
+扩展运算符的用处：
+声明两个数组arr1和arr2，然后我们把arr1赋值给arr2，改变arr2的值，arr1的值也改变了，这是对内存堆栈的引用，而不是真正的赋值。
+*/
+
+// function fn(...arg) {
+//   console.log(arg[0])
+//   console.log(arg[1])
+//   console.log(arg[2])
+//   console.log(arg[3])
+//   console.log(arg[4])
+// }
+
+// fn('a','b','c')  //   输出了 a,b,c，undefined，undefinde 
+// 这说明是可以传入多个值，并且就算方法中引用多了也不会报错。
+
+  // let arr1 = ['www','baidu','com']
+  // let arr2 = arr1
+  // console.log(arr2)
+  // arr2.push('/index')
+  // console.log(arr1)  
+//["www", "jspang", "com"]
+// ["www", "jspang", "com", "shengHongYu"]
+
+  // let arr1=['www','jspang','com'];
+  // //let arr2=arr1;
+  // let arr2=[...arr1];
+  // console.log(arr2);
+  // arr2.push('shengHongYu');
+  // console.log(arr2);
+  // console.log(arr1);
+//    ["www", "jspang", "com"]
+//       ["www", "jspang", "com", "shengHongYu"]
+//       ["www", "jspang", "com"]
+
+//现在控制台预览时，你可以看到我们的arr1并没有改变，简单的扩展运算符就解决了这个问题。
+
+
+
+// rest运算符
+
+// function fn (first,...arg) {
+//   console.log(arg.length)
+//   console.log(first)
+//   console.log(...arg)
+// }
+// fn(0,1,2,3,4,5,6,7);
+
+// 7 ======= 0 ====== 1 2 3 4 5 6 7
+
+
+
+//  字符串模版 ${} 支持html标签 支持运算
+
+// let say = '啊啊啊啊啊啊？'
+// let b = `你在说什么<br/>${say}<b>SBBBBBBBBBB</b>`
+// document.write(b);
+
+// 支持运算
+
+// let aa = 1
+// let bb = 2
+// let result = `${aa+bb}`
+// document.write(result)
+
+
+// 字符串查找
+
+// let one = '到底'
+// let two = '你到底在说什么？'
+// document.write(two.indexOf(one)) // 1的字符串下标记
+// document.write(two.includes(one)) // true 
+
+//  判断开头是否存在： a.startswith(b)
+//  判断结尾是否存在:  a.startsdend(b)
+
+//  复制字符串 
+// document.write('js|'.repeat(3))  // js|js|js|
+
+
+//  数字判断和转换
+// isFinite 判断是否为数字
+// let one = 11/4
+// console.log(Number.isFinite(one)) // true
+// console.log(Number.isFinite('0')) // false
+// console.log(Number.isFinite(NaN)) // false
+// console.log(Number.isFinite(undefined)) // false
+
+// NaN验证 NaN是特殊的非数字，可以使用Number.isNaN()来进行验证
+// console.log(Number.isNaN(NaN)) // true 
+
+// 判断是否为整数Number.isInteger(xx)
+// console.log(Number.isInteger(123)) //true 
+
+// 整数转换Number.parseInt(xxx)和浮点型转换Number.parseFloat(xxx)
+
+
+//  ES6中新增的数组知识
+/*  Array.from()
+跟普通的JSON对比是在最后多了一个length属性。只要是这种特殊的json格式都可以轻松使用ES6的语法转变成数组。
+在ES6中绝大部分的Array操作都存在于Array对象里。用Array.from(xxx)来进行转换。把上边的JSON代码转换成数组，并打印在控制台。
+*/
+  // let  json = {
+  //     '0': 'lu',
+  //     '1': '前端',
+  //     '2': '开发',
+  //     length:3
+  // }
+  // let arr = Array.from(json)
+  // console.log(arr)  //  ["lu", "前端", "开发"]  // 必须是 从0开始的属性声明。
+
+/*
+    Array.of()
+    将字符串，文本，数字转化为数组 避免evel转化的低效率
+*/
+
+  // let arr =Array.of(3,4,5,6);
+  // console.log(arr); // [3, 4, 5, 6]
+  
+  // let arr =Array.of('aa','js','cc');
+  // console.log(arr);
+
+
+/*
+  find()实例方法:
+  find方法是从数组中查找。在find方法中我们需要传入一个匿名函数，函数需要传入三个参数：
+
+  value：表示当前查找的值。
+  index：表示当前查找的数组索引。
+  arr：表示当前数组。
+  在函数中如果找到符合条件的数组元素就进行return，并停止查找
+*/
+
+// let arr = [1,2,3,4,5,6,7]
+// console.log(arr.find(function(val,index,arr){
+//   return val > 5   // 6 一直查找 满足就输出当前 否则输出undefined
+// }))
+
+
+// ES6中新增的数组知识（2）
+
+/*
+fill( )实例方法：
+fill()也是一个实例方法，它的作用是把数组进行填充，它接收三个参数，
+第一个参数是填充的变量，第二个是开始填充的位置，第三个是填充到的位置。
+*/
+// let arr = [0,1,2,3,4,5,6,7,8,9]
+// arr.fill('js',2,5)   
+// console.log(arr)  // [0, 1, "js", "js", "js", 5, 6, 7, 8, 9]
+
+
+
+/*
+数组的遍历 for…of循环 比ES5的for循环要简单而且高效
+*/
+
+// let arr = ['aa','js','cc','dd']
+// for (let item of arr) {
+//  console.log(item)
+// }
+
+// for…of数组索引
+
+// let arr = ['aa','js','cc','dd']
+// for (let index of arr.keys()) {
+//   console.log(index)
+// }
+
+// 同时输出数组的内容和索引
+
+  // let arr = ['aa','js','bb','cc']
+  // for (let [index,val] of arr.entries()) {
+  //   console.log(index + ':'  + val)
+  // }
+
+    // let arr=['jspang','技术胖','大胖逼逼叨']
+    // let list=arr.entries();
+    // console.log(list)  // Array Iterator {}
+    // console.log(list.next().value); // [0, "jspang"]
+    // console.log(list.next().value); // [1, "技术胖"]
+    // console.log(list.next().value); // [2, "大胖逼逼叨"]
+
+// ES6中的箭头函数和扩展
+  // var add = (a,b=2) => a+b
+  // console.log(add(1))
+
+// var add = (a,b=2) => {
+//   return a+b
+// }
+// console.log(add(a=2))
+ 
+// 数组的函数解构
+
+  // let arr = ['aa','bb','cc']
+  // function fun (a,b,c) {
+  // console.log(a,b,c)
+  // }
+  // fun(...arr)
+
+  /*
+  数组的遍历方法
+  */ 
+
+// forEach循环的特点是会自动省略为空的数组元素，相当于直接给我们筛空了。
+  // let arr = ['aa','bb','cc']
+  // arr.forEach((val,index) => {
+  //   console.log(index + ':index' +'_____' + 'val:' + val)
+  // })
+
+// filter
+  // let arr = ['aa','bb','cc','dd']
+  // arr.filter(x => console.log(x)) // aa bb cc dd
+
+  // // some
+  // let arr = ['aa','bb','cc','dd']
+  // arr.some( x=>console.log(x)) // aa bb cc dd
+
+  // // map
+  // let arr = ['aa','bb','cc','dd']
+  // arr.map(x=>console.log(x)) // aa bb cc  dd
+
+</script> 

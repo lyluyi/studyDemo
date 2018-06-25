@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script src ='./react.js'></script>
+<script src = './react-dom.js'></script>
+<script src="http://cdn.bootcss.com/babel-core/5.8.38/browser.min.js"></script>
+<body>
+    <did id="reactContainer">
+
+    </did>
+</body>
+</html>
+<script>
+    /*
+    React组件可以把它看作带有props属性集合和state状态集合并且构造出一个虚拟DOM结构的对象。
+
+    state成员
+    组件总是需要和用户互动的。React的一大创新，就是将界面组件看成一个状态机，
+    用户界面拥有不同状态并根据状态进行渲染输出，用户界面和数据始终保持一致。
+    开发者的主要工作就是定义state，并根据不同的state渲染对应的用户界面。
+    
+    setState()
+    通知React组件数据发生变化的方法是调用成员函数setState(data,callback)。
+    这个函数会合并data到this.state,并重新渲染组件。渲染完成后，调用可选的callback回调。
+    （大部分情况下不需要调用回调，因为React会负责把界面更新到最新状态）
+
+    getInitialState函数必须有返回值，可以是null,false,一个对象。
+    访问state数据的方法是”this.state.属性名”。
+    变量用{}包裹，不需要再加双引号。
+
+    */
+    // var textStateTest = React.createClass({
+    //     getStartState: function () {
+    //         return {enable:false}
+    //     },
+    //     change: function (event) {
+    //         this.setState({enable:!this.state.enable})
+    //     },
+    //     render: function () {
+    //         return (
+    //             <p>
+    //             <input type = 'text' disable = {this.state.enable}/>
+    //             <button onClick = {this.change}>改变state</button>
+    //             </p>
+    //         )
+    //     }
+    // })
+
+    // ReactDOM.render(
+    //     <textStateTest/>,
+    //     document.getElementById("reactContainer")
+    // )
+</script>
