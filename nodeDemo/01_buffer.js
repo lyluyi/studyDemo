@@ -39,5 +39,3 @@ console.log(str1.length)   //  字符串 和二进制的长度是一致的
 */
 
 
-
-
