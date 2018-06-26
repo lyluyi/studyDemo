@@ -632,44 +632,102 @@ FilterableProductTable
 
 class ProductCategoryRow extends React.Component{
   render () {
-    return  <tr><th colSpan='2' ></th></tr>
+    console.log(this.props)
+    return  <tr><th colSpan='2' >{this.props.category}</th></tr>
   }
 }
 
 class ProductRow extends React.Component{
   render () {
+    console.log(this.props)
+    var name = this.props.product.stocked ? this.props.product.name : 
+    <span style={{color:'red'}}>{this.props.product.name}</span>
     return (
       <tr>
-        <td></td>
-        <td></td>
+        <td>{name}</td>
+        <td>{this.props.product.price}</td>
       </tr>
     )
   }
 }
 
-class ProductTable extends React.Component{
+class ProductTable extends React.Component{   
+  // constructor (props) {  
+  //   super(props)
+  //   console.log(props)
+  // }   
+  /*
+  3.super(props)------super()-----以及不写super的区别
+   如果你用到了constructor就必须写super(),是用来初始化this的，可以绑定事件到this上;
+
+   如果你在constructor中要使用this.props,就必须给super加参数：super(props)；
+
+   （无论有没有constructor，在render中this.props都是可以使用的，这是React自动附带的；）
+
+   如果没用到constructor,是可以不写的；React会默认添加一个空的constructor。
+
+
+  */
   render () {
+    var rows = []
+    var lastCategory = null
+    this.props.products.forEach(product => {
+      if (product.category !== lastCategory) {
+        rows.push(<ProductCategoryRow category={product.category} key={product.category} />)
+      }
+      rows.push(<ProductRow product={product} name={product.name} key={product.name} />)
+      //  所有挂载在组件上的props 会以对象key value的集合形式生成 
+      /*
+        {product: {…}, name: "Nexus 7"}
+      */ 
+      lastCategory = product.category
+    })
     return  (
       <table>
         <thead>
           <tr>
-            <th></th>
-            <th></th>
+            <th>name</th>
+            <th>Price</th>
           </tr>
         </thead>
-        <tbody>{rows}</tbody>
+        <tbody>
+          {rows}
+        </tbody>
       </table>
     )
   }
 }
 
 class SearchBar extends React.Component{
+  constructor (props) {
+    super(props)
+    console.log(this.constructor)
+
+    // this.handleFilterTextInputChange = this.handleFilterTextInputChange.bind(this)
+    // this.handleInStockInputChange = this.handleInStockInputChange.bind(this)
+  }
+  handleFilterTextInputChange (e) {
+    console.log(this) // undefined
+    // this.props.onFilterTextInput (e.target.value)
+  }
+  handleInStockInputChange(e) {
+    // this.props.onInStockInput(e.target.checked);
+  }
   render () {
+    console.log(this.props + '**********SearchBar')
+    /*
+    filterText:"ball"
+    inStockOnly:false
+    */
     return  (
       <form>
-        <input type="text" placeholder="Search..." />
+        <input type="text" placeholder="Search..." value = {this.props.filterText}
+        onChange={this.handleFilterTextInputChange}
+        />
         <p>
-          <input type="checkbox" />
+          <input type="checkbox" checked = {this.props.inStockOnly}
+           onChange={this.handleInStockInputChange}
+          />
           {' '}
           Only show products in stock
         </p>
@@ -678,6 +736,33 @@ class SearchBar extends React.Component{
   }
 }
 
+class FilterableProductTable extends React.Component{
+  constructor (props) {
+    super(props)
+    console.log(this.props)
+    this.state = {
+      filterText: 'ball',
+      inStockOnly: false
+    }
+  }
+  render () {
+    return (
+      <div>
+        <SearchBar
+        filterText={this.state.filterText}
+        inStockOnly={this.state.inStockOnly}
+        onFilterTextInput = {this.handleFilterTextInputChange}
+        />
+        <ProductTable 
+        products = {this.props.products}
+        filterText={this.state.filterText}
+        inStockOnly={this.state.inStockOnly}
+        onInStockInput = {this.handleInStockInputChange}
+        />
+      </div>
+    )
+  }
+}
 
 var PRODUCTS = [
   {category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football'},
@@ -688,3 +773,7 @@ var PRODUCTS = [
   {category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7'}
 ];
 
+ReactDOM.render(
+  <FilterableProductTable products={PRODUCTS}/>,
+  document.getElementById('root')
+)
