@@ -30,3 +30,9 @@
 /* 而在node的闭包域内 exports === module.exports 的 
 所以不允许 exports = {} 这种改变引用内存的操作 只能通过exports.属性 的方法暴露
 */
+
+//  Buffer.alloc(size[, fill[, encoding]])
+
+var  buffer = Buffer.alloc(10)
+buffer[0] = 10
+console.log(buffer)
