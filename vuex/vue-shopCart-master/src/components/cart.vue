@@ -32,7 +32,7 @@
   export default {
     name: 'Cart',
     computed: {
-      'totalPrice': function() {
+      'totalPrice': function() { // 映射 this.totalPrice 为 totalPrice 
         let totalPrice = 0
         for (let i in this.cart) {
           totalPrice += this.cart[i].price

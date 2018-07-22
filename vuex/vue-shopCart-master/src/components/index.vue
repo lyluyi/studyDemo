@@ -90,7 +90,7 @@
         })
       },
       ...mapActions([
-        'changePrice',
+        'changePrice',  // 'changePrice', 将 `this.changePrice()` 映射为 `this.$store.commit('changePrice')`
         'changeStyle',
         'addItem'
       ])

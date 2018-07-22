@@ -9,14 +9,18 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">VuexTestBy_luyi</a>
+      <router-link :to="{ path: '/'}"><a class="navbar-brand" href="#">VuexTestBy_luyi</a></router-link>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">iPhone 6S  <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
+        <li :class="{active: activeClass === 'acOne'}" @click="activeClick ('acOne')">
+          <router-link :to="{ name: 'index', path: '/index'}"><span>iPhone 6S</span></router-link>
+        </li>
+        <li :class="{active: activeClass === 'acTwo'}" @click="activeClick('acTwo')">
+          <router-link :to="{name: 'shop', path: '/shop'}"><span>购物车<span class="badge text-danger" v-text="cart.length" v-if="cart.length"></span></span></router-link>
+        </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -24,13 +28,26 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+
 export default {
   name: 'navBar',
   data () {
     return {
+      activeClass: 'acOne'
     }
   },
+  computed: {
+    ...mapGetters([
+      'cart'
+    ])
+  },
   methods: {
+    activeClick (val) {
+      console.log(val)
+      this.activeClass = val
+      console.log(this.activeClass)
+    }
   },
   components: {
   }
@@ -39,4 +56,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.text-danger {
+    color: #fff;
+    background-color: #d9534f;
+  }
 </style>

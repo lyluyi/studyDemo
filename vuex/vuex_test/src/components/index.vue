@@ -33,7 +33,7 @@
                 </dd>
               </dl>
             </div>
-             <button type="button" class="btn btn-danger" style="width:100%;">加入购物车</button>
+             <button type="button" class="btn btn-danger" style="width:100%;" @click="addItem()">加入购物车</button>
         </div>
         <hr>
       </div>
@@ -45,31 +45,42 @@
 <script>
 import navBar from '@/components/navBar'
 import shop from '@/components/shop'
-import {mapState} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 // import {mapState, mapMutations, mapActions, mapGetters} from 'vuex'
 
 export default {
   data () {
     return {
+      activeStyle: '',
+      type: ''
     }
   },
   created () {
     console.log(this.$store)
   },
   computed: {
-    ...mapState([
+    ...mapGetters([
       'iPhone6S'
     ])
   },
   methods: {
-    changePriceActive () {
-
+    changePriceActive (type, price) {
+      this.changePrice({
+        type,
+        price
+      })
     },
     changeStyleActive (url, color) {
-      console.log(this)
-      console.log(this.iPhone6S)
-      this.iPhone6S.activeStyleUrl = url
-    }
+      this.changeStyle({
+        url,
+        color
+      })
+    },
+    ...mapActions([
+      'changeStyle',
+      'changePrice',
+      'addItem'
+    ])
   },
   components: {
     navBar,

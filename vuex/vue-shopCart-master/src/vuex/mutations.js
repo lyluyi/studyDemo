@@ -6,6 +6,17 @@ import * as types from './mutation-types.js'
 从图上可以看出mutation-types定义的变量在这里得到了应用
 */
 const mutations = {
+  // 可以使用 ES2015 风格的计算属性命名功能来使用一个常量作为函数名
+  /*
+    function getPoint() {
+    const x = 1;
+    const y = 10;
+    return {x, y};
+    }
+    getPoint()
+    // {x:1, y:10}
+
+  */
   [types.CHANGE_STYLE](state, {color, url}) {
     console.log(color)
     state.iPhone6S.activeStyle = color
