@@ -3,6 +3,7 @@ const counter = ( state = 1, action = {} ) => {
     case 'INCREMENT':
       console.log(action)
       console.log(action.name)
+      // throw new Error('error in INCREMENT')
       return state + 1
     case 'DECREASE':
       return state - 1

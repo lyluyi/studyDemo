@@ -3,8 +3,8 @@ import list from './list_reducer'
 import detail from './detail_reducer'
 import user from './user_reducer'
 let reducers = combineReducers({
-list,
-detail,
-user
+  list,
+  detail,
+  user
 });
 export default reducers
