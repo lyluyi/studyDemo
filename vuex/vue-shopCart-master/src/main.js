@@ -10,7 +10,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
-  store,
+  store, // 4.注入, 所有的子组件都能够通过this.$store拿到此对象
   template: '<App/>',
   components: { App }
 })

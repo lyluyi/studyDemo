@@ -68,7 +68,7 @@
 
     调用mutations方法
     先import引入mapMutations方法
-    在vue的methods下调用...mapMutations({}）,大括号中写入要修改的数据的mutations方法
+    在vue的methods下调用...mapMutations({}),大括号中写入要修改的数据的mutations方法
     */
     computed: {
       ...mapGetters([
@@ -90,7 +90,7 @@
         })
       },
       ...mapActions([
-        'changePrice',
+        'changePrice',  // 'changePrice', 将 `this.changePrice()` 映射为 `this.$store.commit('changePrice')`
         'changeStyle',
         'addItem'
       ])

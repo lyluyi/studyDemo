@@ -672,6 +672,9 @@ class ProductTable extends React.Component{
     var rows = []
     var lastCategory = null
     this.props.products.forEach(product => {
+      if (product.name.indexOf(this.props.filterText) === -1 || (!product.stocked && this.props.inStockOnly)) {
+        return;
+      }
       if (product.category !== lastCategory) {
         rows.push(<ProductCategoryRow category={product.category} key={product.category} />)
       }
@@ -698,23 +701,59 @@ class ProductTable extends React.Component{
   }
 }
 
+
+/** 
+ * prototpye可以理解为只有在函数才有的属性，而__proto__是对象才有的属性，
+ * 函数也是对象，所以函数也会有__proto__属性，
+ * 
+ * 任何一个由构造器产生的对象都有__proto__属性，且此属性指向该构造器的prototype。
+ * 所有构造器/函数的__proto__都指向Function的prototype 
+ * 
+ * constructor属性指向的是创建当前对象的构造函数。
+ * 每个函数都有一个默认的属性prototype，而这个prototype的constructor默认指向这个函数
+ * 
+**/
 class SearchBar extends React.Component{
   constructor (props) {
     super(props)
-    console.log(this.constructor)
 
-    // this.handleFilterTextInputChange = this.handleFilterTextInputChange.bind(this)
-    // this.handleInStockInputChange = this.handleInStockInputChange.bind(this)
+  // //*******************************************************************************
+  //   console.log(this)   //  继承 f SearchBar 的实例对象
+  //   /*
+  //   SearchBar {props: {…}, context: undefined, refs: {…}, updater: {…}}
+  //   */
+
+  //   console.log(this.constructor)  //  该实例对象指向的构造器 也就是一个构造函数
+  //   /*
+  //   ƒ SearchBar(props) {
+  //   _classCallCheck(this, SearchBar);
+  //   var _this5 = _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).call(this, props));
+  //   console.…
+  //   */
+  //  console.log(this.constructor +'\n')
+  //  console.log(this.constructor.constructor +"\n") 
+  //  console.log(this.constructor.__proto__+'\n')
+  //  console.log(this.constructor.prototype +'\n')
+  // //  console.log(this.constructor.constructor.prototype)
+
+  //  console.log(this.__proto__)  // Componen  指向 React的Component
+
+  // //**********************************************************************************
+
+    this.handleFilterTextInputChange = this.handleFilterTextInputChange.bind(this)
+    this.handleInStockInputChange = this.handleInStockInputChange.bind(this)
   }
-  handleFilterTextInputChange (e) {
+  handleFilterTextInputChange(e) {
+
     console.log(this) // undefined
-    // this.props.onFilterTextInput (e.target.value)
+    console.log(e) // undefined
+    this.props.onFilterTextInput(e.target.value)   //父组件的方法 接受了 子组件input的值
   }
   handleInStockInputChange(e) {
-    // this.props.onInStockInput(e.target.checked);
+    this.props.onInStockInput(e.target.checked);
   }
   render () {
-    console.log(this.props + '**********SearchBar')
+    // console.log(this.props + '**********SearchBar')
     /*
     filterText:"ball"
     inStockOnly:false
@@ -744,20 +783,33 @@ class FilterableProductTable extends React.Component{
       filterText: 'ball',
       inStockOnly: false
     }
+    this.handleFilterTextInput = this.handleFilterTextInput.bind(this);
+    this.handleInStockInput = this.handleInStockInput.bind(this);
+  }
+  handleFilterTextInput(filterText) {
+    this.setState({
+      filterText: filterText   // 重新 setState
+    });
+  }
+  
+  handleInStockInput(inStockOnly) {
+    this.setState({
+      inStockOnly: inStockOnly
+    })
   }
   render () {
     return (
       <div>
         <SearchBar
-        filterText={this.state.filterText}
-        inStockOnly={this.state.inStockOnly}
-        onFilterTextInput = {this.handleFilterTextInputChange}
+          filterText={this.state.filterText}
+          inStockOnly={this.state.inStockOnly}
+          onFilterTextInput = {this.handleFilterTextInput}
+          onInStockInput ={this.handleInStockInput}
         />
         <ProductTable 
-        products = {this.props.products}
-        filterText={this.state.filterText}
-        inStockOnly={this.state.inStockOnly}
-        onInStockInput = {this.handleInStockInputChange}
+          products = {this.props.products}
+          filterText={this.state.filterText}
+          inStockOnly={this.state.inStockOnly}
         />
       </div>
     )

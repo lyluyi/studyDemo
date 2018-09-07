@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>模拟排序动画</title>
+</head>
+<body>
+  <div class="container">
+
+  </div>
+</body>
+</html>
+<script>
+ 
+
+//  var d1 = new Date();
+
+// //创建一千个段落,常规的方式
+
+// for(var i = 0 ; i < 1000; i ++) {
+
+//     var p = document.createElement("p");
+
+//     var oTxt = document.createTextNode("段落" + i);
+
+//     p.append(oTxt);
+
+//     document.body.append(p);
+
+// }
+
+// var d2 = new Date();
+
+// console.log("第一次创建需要的时间:"+(d2.getTime()-d1.getTime()));
+// //第一次创建需要的时间:6
+
+// //使用了createDocumentFragment()的程序
+
+// var d3 = new Date();
+
+// var pFragment = document.createDocumentFragment();
+
+// for(var i = 0 ; i < 1000; i ++) {
+
+//     var p = document.createElement("p");
+
+//     var oTxt = document.createTextNode("段落" + i);
+
+//     p.append(oTxt);
+
+//     pFragment.append(p);
+
+// }
+
+// document.body.append(pFragment);
+
+// var d4 = new Date();
+
+// console.log("第2次创建需要的时间:"+(d4.getTime()-d3.getTime()));
+// //第2次创建需要的时间:3
+
+ var arr = [5,4,8,9,6,5,4,12,3,6,7,8,56];
+ var len = arr.length
+  var containerDiv = document.querySelector('.container')
+  var fragMent = document.createDocumentFragment() // 创建文档片段 尽量减少重绘和重排
+  arr.forEach(function(item, index){
+    oDiv = document.createElement('div')
+    oDiv.className = 'sort'
+    oDiv.id = index
+    oDiv.style.left = index * 90 + 'px'
+    oDiv.innerHTML = arr[index]
+    fragMent.append(oDiv) 
+    // 相当于一个虚拟容器 避免 使用containerDiv.appendChild（oDiv）每一次都进行重绘页面
+  })
+  containerDiv.appendChild(fragMent)
+  var time = 1
+  for (let i = 0; i < len; i++) {
+    for (let j = 0; j < len - i; j++) {
+      if (arr[j] > arr[j+1]) {
+        [arr[j], arr[j+1]] = [arr[j+1], arr[j]]
+        setTimeout(function() {
+          [...document.getElementsByClassName('sort')].forEach(ele=>ele.style.borderColor='black')
+          var x = document.getElementById(j)	
+          var y = document.getElementById(j+1);
+          [x.style.left,y.style.left] = [y.style.left,x.style.left];
+          [x.id,y.id] = [y.id,x.id]
+          x.style.borderColor='red';
+          y.style.borderColor = 'red';
+        }, time * 1000)
+        time++
+      }
+    }
+  }
+
+</script>
+
+<style>
+  .container {
+    text-align: center;
+  }
+  .sort {
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    border: 2px solid black;
+    position: absolute;
+    transition: 1s;
+  }
+</style>
