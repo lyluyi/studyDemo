@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://cdn.bootcss.com/bulma/0.7.1/css/bulma.css" rel="stylesheet">
+  <title>用户列表</title>
+</head>
+<body>
+  <table class="table is-bordered is-striped is-hoverable">
+    <thead>
+      <tr>
+        <th>编号</th>
+        <th>姓名</th>
+        <th>电话</th>
+        <th>邮箱</th>
+        <th>地址</th>
+        <th>邮编</th>
+        <th>生日</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{each users as val index}}
+        <tr>
+          <td>{{val.id}}</td>
+          <td>{{val.name}}</td>
+          <td>{{val.email}}</td>
+          <td>{{val.phone}}</td>
+          <td>{{val.address}}</td>
+          <td>{{val.zip}}</td>
+          <td>{{val.birthday}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</body>
+</html>

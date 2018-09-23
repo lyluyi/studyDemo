@@ -7,6 +7,7 @@ async function f() {
   return 'hello world'
 }
 
-f().then( v => console.log(v))
+const a = f()
 
-
+console.log(a)
+// f().then( v => console.log(v))
