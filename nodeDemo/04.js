@@ -1,4 +1,4 @@
-//  node  的全局对象 g/obal 相当于window
+//  node  的全局对象 global 相当于window
 
 // console.log(window.exports) // undefined
 // console.log(global.exports) // undefined
