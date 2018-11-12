@@ -5,6 +5,10 @@ app.use( async (ctx) => {
   ctx.body = 'hello koa2'
 })
 
+
+
+app.listen(3000)
+
 // function getSomething () {
 //   return 'something'
 // }
@@ -24,19 +28,17 @@ app.use( async (ctx) => {
 
 // test()
 
-function takeLongTime () {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve('long_time_value', 1000)
-    })
-  })
-}
+// function takeLongTime () {
+//   return new Promise(resolve => {
+//     setTimeout(() => {
+//       resolve('long_time_value', 1000)
+//     })
+//   })
+// }
 
-async function test() {
-  const v = await takeLongTime()
-  console.log(v)
-}
+// async function test() {
+//   const v = await takeLongTime()
+//   console.log(v)
+// }
 
-test()
-
-app.listen(3000)
+// test()

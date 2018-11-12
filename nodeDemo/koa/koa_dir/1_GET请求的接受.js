@@ -11,6 +11,7 @@ const app = new Koa()
 
 */ 
 
+//  在ctx.request中获取Get请求外
 app.use(async(ctx) => {
   let url =ctx.url
   let request =ctx.request
@@ -27,3 +28,4 @@ app.use(async(ctx) => {
 app.listen(3000, () => {
   console.log('[demo] server is Starting at port 3000')
 })
+
